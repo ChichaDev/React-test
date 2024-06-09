@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-vite",
+  "name": "reacte-vite-test",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -46,7 +46,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "commitizen": "^4.3.0",
-    "cz-customizable": "^7.0.0"
+    "cz-customizable": "^7.0.0",
+    "@commitlint/config-conventional": "9.1.1"
   },
   "config": {
     "commitizen": {
