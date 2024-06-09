@@ -12,7 +12,8 @@
     "lint:check": "eslint --ext .ts,.tsx src",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
-    "types": "tsc --noEmit -p ."
+    "types": "tsc --noEmit -p .",
+    "cz": "git-cz"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -43,6 +44,16 @@
     "stylelint-order": "^6.0.3",
     "stylelint-scss": "^5.0.1",
     "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "commitizen": "^4.3.0",
+    "cz-customizable": "^7.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".config/git/cz-config.cjs"
+    }
   }
 }
