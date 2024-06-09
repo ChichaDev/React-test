@@ -1,0 +1,31 @@
+{
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss",
+    "stylelint-config-rational-order-fix/plugin"
+  ],
+  "extends": [
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-config-standard-scss",
+    "stylelint-config-rational-order-fix"
+  ],
+  "rules": {
+    "indentation": "tab",
+    "color-hex-case": "upper",
+    "block-opening-brace-space-before": "always",
+    "declaration-colon-newline-after": "always-multi-line",
+    "selector-max-id": 1,
+    "declaration-property-value-disallowed-list": null,
+    "string-quotes": "single",
+    "plugin/rational-order": [
+      true,
+      {
+        "empty-line-between-groups": true
+      }
+    ],
+    "no-empty-source": true,
+    "declaration-empty-line-before": null
+  },
+  "files": ["**/*.{sass,scss,css}"],
+  "ignoreFiles": ["**/styles/*.{ts,js,jsx,tsx}"]
+}
