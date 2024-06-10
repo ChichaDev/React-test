@@ -4,15 +4,21 @@ import type { Gallery } from '@/types';
 
 import type { GallerySlice } from './slice';
 
-export const fetchNews = createAsyncThunk<
+type ApiResponse = {
+  hits: Gallery[];
+};
+export const fetchGalleryItems = createAsyncThunk<
   Gallery[],
-  undefined,
+  { page: number; perPage: number },
   { state: { gallery: GallerySlice } }
 >(
-  'news/fetchNews',
-  async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts?&_limit=5');
-    return (await response.json()) as Gallery[];
+  'gallery/fetchGalleryItems',
+  async ({ page = 1, perPage = 10 }) => {
+    const response = await fetch(
+      `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&page=${page}&per_page=${perPage}`
+    );
+    const data: ApiResponse = await response.json();
+    return data.hits;
   },
   {
     condition: (_, { getState }) => {
@@ -24,16 +30,15 @@ export const fetchNews = createAsyncThunk<
     }
   }
 );
-
 export const fetchMoreNews = createAsyncThunk<
   Gallery[],
-  number,
+  { start: number; limit: number },
   { state: { gallery: GallerySlice } }
 >(
   'news/fetchMoreNews',
-  async (start = 0) => {
+  async ({ start = 10, limit = 10 }) => {
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=5`
+      `https://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`
     );
     return (await response.json()) as Gallery[];
   },

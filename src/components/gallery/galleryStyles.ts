@@ -1,8 +1,9 @@
 export const galleryGridContainer = {
   mt: '1rem',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '1rem',
+  justifyContent: 'center'
 };
 export const btn = {
   mt: '1rem',

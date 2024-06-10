@@ -1,33 +1,32 @@
-import { Card, CardContent, Grid, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Typography, Skeleton } from '@mui/material';
+import { useState } from 'react';
 
 import type { Gallery } from '@/types';
 
 import { galleryGridCard, galleryGridItem } from './galleryStyles';
 
-type GalleryItemProps = Pick<Gallery, 'title' | 'body' | 'id'>;
+type GalleryItemProps = Pick<Gallery, 'largeImageURL' | 'tags' | 'id'>;
 
 export const GalleryItem = (props: GalleryItemProps) => {
-  const { body, title } = props;
+  const { largeImageURL, tags } = props;
+  const [loaded, setLoaded] = useState(false);
 
-  // const dispatch = useAppDispatch();
-
-  // const isLoggedIn = useAppSelector(getIsLoggedInStatus);
-
-  // const handleRemoveNews = () => {
-  //   dispatch(removeNews(id));
-  // };
-
-  // TODO: text
   return (
     <Grid item xs={12} md={12} sx={galleryGridItem}>
       <Card sx={galleryGridCard}>
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
-            {title}
+            {tags}
           </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            {body}
-          </Typography>
+          {!loaded && <Skeleton variant='rectangular' width='100%' height={224} />}
+          <CardMedia
+            component='img'
+            height='224'
+            image={largeImageURL}
+            alt={tags}
+            onLoad={() => setLoaded(true)}
+            style={{ display: loaded ? 'block' : 'none' }}
+          />
         </CardContent>
       </Card>
     </Grid>

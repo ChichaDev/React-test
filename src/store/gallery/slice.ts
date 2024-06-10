@@ -3,38 +3,36 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { Gallery } from '@/types';
 import type { AsyncThunkStatus } from '@/types/slice';
 
-import { fetchMoreNews, fetchNews } from './action';
+import { fetchMoreNews, fetchGalleryItems } from './action';
 
 export type GallerySlice = {
   status: AsyncThunkStatus;
-  newsList: Gallery[];
-  countNews: number;
+  galleryList: Gallery[];
 };
 
 const initialState: GallerySlice = {
   status: 'idle',
-  newsList: [],
-  countNews: 5
+  galleryList: []
 };
 
 const gallerySlice = createSlice({
-  name: '@news',
+  name: '@gallery',
   initialState,
   reducers: {
     removeNews(state, action) {
-      state.newsList = state.newsList.filter((item) => item.id !== action.payload);
+      state.galleryList = state.galleryList.filter((item) => item.id !== action.payload);
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchNews.pending, (state) => {
+      .addCase(fetchGalleryItems.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchNews.fulfilled, (state, action) => {
+      .addCase(fetchGalleryItems.fulfilled, (state, action) => {
         state.status = 'resolved';
-        state.newsList = action.payload;
+        state.galleryList = action.payload;
       })
-      .addCase(fetchNews.rejected, (state) => {
+      .addCase(fetchGalleryItems.rejected, (state) => {
         state.status = 'rejected';
       })
       .addCase(fetchMoreNews.pending, (state) => {
@@ -42,8 +40,7 @@ const gallerySlice = createSlice({
       })
       .addCase(fetchMoreNews.fulfilled, (state, action) => {
         state.status = 'resolved';
-        state.newsList = [...state.newsList, ...action.payload];
-        state.countNews = state.countNews + 5;
+        state.galleryList = [...state.galleryList, ...action.payload];
       })
       .addCase(fetchMoreNews.rejected, (state) => {
         state.status = 'rejected';

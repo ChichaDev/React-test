@@ -10,7 +10,6 @@ export const Gallery = () => {
       <Typography variant='h5' noWrap sx={galleryStyles}>
         Galaxy
       </Typography>
-
       <GalleryList />
     </Container>
   );

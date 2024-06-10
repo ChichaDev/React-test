@@ -1,7 +1,5 @@
 import type { RootState } from '../store';
 
-export const getCountNews = (state: RootState) => state.gallery.countNews;
+export const getGallery = (state: RootState) => state.gallery.galleryList;
 
-export const getNews = (state: RootState) => state.gallery.newsList;
-
-export const getStatusNews = (state: RootState) => state.gallery.status;
+export const getStatusGallery = (state: RootState) => state.gallery.status;
