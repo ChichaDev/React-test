@@ -7,16 +7,25 @@ import type { GallerySlice } from './slice';
 type ApiResponse = {
   hits: Gallery[];
 };
+
+type FetchGalleryItemsOptions = {
+  page: number;
+  perPage: number;
+  imageType?: string;
+};
 export const fetchGalleryItems = createAsyncThunk<
   Gallery[],
-  { page: number; perPage: number },
+  FetchGalleryItemsOptions,
   { state: { gallery: GallerySlice } }
 >(
   'gallery/fetchGalleryItems',
-  async ({ page = 1, perPage = 10 }) => {
-    const response = await fetch(
-      `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&page=${page}&per_page=${perPage}`
-    );
+  async ({ page = 1, perPage = 10, imageType = 'all' }) => {
+    let url = `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&page=${page}&per_page=${perPage}`;
+    if (imageType) {
+      url += `&image_type=${imageType}`;
+    }
+
+    const response = await fetch(url);
     const data: ApiResponse = await response.json();
     return data.hits;
   },
@@ -30,25 +39,26 @@ export const fetchGalleryItems = createAsyncThunk<
     }
   }
 );
-export const fetchMoreNews = createAsyncThunk<
-  Gallery[],
-  { start: number; limit: number },
-  { state: { gallery: GallerySlice } }
->(
-  'news/fetchMoreNews',
-  async ({ start = 10, limit = 10 }) => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`
-    );
-    return (await response.json()) as Gallery[];
-  },
-  {
-    condition: (_, { getState }) => {
-      const { status } = getState().gallery;
+// export const fetchGalleryItemsByCategory = createAsyncThunk<
+//   Gallery[],
+//   { image_type: string },
+//   { state: { gallery: GallerySlice } }
+// >(
+//   'news/fetchMoreNews',
+//   async ({ image_type }) => {
+//     const response = await fetch(
+//       `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&image_type=${image_type}`
+//     );
+//     const data: ApiResponse = await response.json();
+//     return data.hits;
+//   },
+//   {
+//     condition: (_, { getState }) => {
+//       const { status } = getState().gallery;
 
-      if (status === 'loading') {
-        return false;
-      }
-    }
-  }
-);
+//       if (status === 'loading') {
+//         return false;
+//       }
+//     }
+//   }
+// );

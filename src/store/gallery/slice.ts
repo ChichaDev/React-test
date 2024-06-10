@@ -3,24 +3,29 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { Gallery } from '@/types';
 import type { AsyncThunkStatus } from '@/types/slice';
 
-import { fetchMoreNews, fetchGalleryItems } from './action';
+import { fetchGalleryItems } from './action';
 
 export type GallerySlice = {
   status: AsyncThunkStatus;
   galleryList: Gallery[];
+  selectedCategory: string;
 };
 
 const initialState: GallerySlice = {
   status: 'idle',
-  galleryList: []
+  galleryList: [],
+  selectedCategory: 'all'
 };
 
 const gallerySlice = createSlice({
   name: '@gallery',
   initialState,
   reducers: {
-    removeNews(state, action) {
-      state.galleryList = state.galleryList.filter((item) => item.id !== action.payload);
+    // removeNews(state, action) {
+    //   state.galleryList = state.galleryList.filter((item) => item.id !== action.payload);
+    // }
+    setCategory(state, action) {
+      state.selectedCategory = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -34,19 +39,20 @@ const gallerySlice = createSlice({
       })
       .addCase(fetchGalleryItems.rejected, (state) => {
         state.status = 'rejected';
-      })
-      .addCase(fetchMoreNews.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchMoreNews.fulfilled, (state, action) => {
-        state.status = 'resolved';
-        state.galleryList = [...state.galleryList, ...action.payload];
-      })
-      .addCase(fetchMoreNews.rejected, (state) => {
-        state.status = 'rejected';
       });
+    // .addCase(fetchGalleryItemsByCategory.pending, (state) => {
+    //   state.status = 'loading';
+    // })
+    // .addCase(fetchGalleryItemsByCategory.fulfilled, (state, action) => {
+    //   state.status = 'resolved';
+    //   // state.galleryList = [...state.galleryList, ...action.payload];
+    //   state.galleryList = action.payload;
+    // })
+    // .addCase(fetchGalleryItemsByCategory.rejected, (state) => {
+    //   state.status = 'rejected';
+    // });
   }
 });
 
-export const { removeNews } = gallerySlice.actions;
+export const { setCategory } = gallerySlice.actions;
 export default gallerySlice.reducer;
