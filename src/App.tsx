@@ -1,29 +1,18 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import * as React from 'react';
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
 
-import reactLogo from './assets/react.svg';
+import { store } from '@/store/store';
 
-import './App.css';
+import { router } from './routing/routing';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    setCount(1);
-  }, []);
   return (
-    <>
-      <div>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-      </div>
-      <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
-    </>
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </React.StrictMode>
   );
 }
 
