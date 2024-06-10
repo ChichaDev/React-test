@@ -9,7 +9,7 @@ export const Gallery = () => {
   return (
     <Container sx={galleryContainer}>
       <Typography variant='h5' noWrap sx={galleryStyles}>
-        Galaxy
+        Gallery
       </Typography>
       <Filters />
       <GalleryList />

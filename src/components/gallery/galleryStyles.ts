@@ -15,6 +15,5 @@ export const galleryGridItem = {
   alignItems: 'center'
 };
 export const galleryGridCard = {
-  width: '80%',
-  height: '100%'
+  width: '100%'
 };

@@ -18,10 +18,11 @@ export const GalleryItem = (props: GalleryItemProps) => {
           <Typography gutterBottom variant='h5' component='div'>
             {tags}
           </Typography>
-          {!loaded && <Skeleton variant='rectangular' width='100%' height={224} />}
+          {!loaded && <Skeleton variant='rectangular' width='100%' height={350} />}
           <CardMedia
             component='img'
-            height='224'
+            height='350'
+            width='350'
             image={largeImageURL}
             alt={tags}
             onLoad={() => setLoaded(true)}

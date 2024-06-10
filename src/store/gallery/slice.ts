@@ -21,9 +21,6 @@ const gallerySlice = createSlice({
   name: '@gallery',
   initialState,
   reducers: {
-    // removeNews(state, action) {
-    //   state.galleryList = state.galleryList.filter((item) => item.id !== action.payload);
-    // }
     setCategory(state, action) {
       state.selectedCategory = action.payload;
     }
@@ -40,17 +37,6 @@ const gallerySlice = createSlice({
       .addCase(fetchGalleryItems.rejected, (state) => {
         state.status = 'rejected';
       });
-    // .addCase(fetchGalleryItemsByCategory.pending, (state) => {
-    //   state.status = 'loading';
-    // })
-    // .addCase(fetchGalleryItemsByCategory.fulfilled, (state, action) => {
-    //   state.status = 'resolved';
-    //   // state.galleryList = [...state.galleryList, ...action.payload];
-    //   state.galleryList = action.payload;
-    // })
-    // .addCase(fetchGalleryItemsByCategory.rejected, (state) => {
-    //   state.status = 'rejected';
-    // });
   }
 });
 

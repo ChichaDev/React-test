@@ -39,26 +39,3 @@ export const fetchGalleryItems = createAsyncThunk<
     }
   }
 );
-// export const fetchGalleryItemsByCategory = createAsyncThunk<
-//   Gallery[],
-//   { image_type: string },
-//   { state: { gallery: GallerySlice } }
-// >(
-//   'news/fetchMoreNews',
-//   async ({ image_type }) => {
-//     const response = await fetch(
-//       `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&image_type=${image_type}`
-//     );
-//     const data: ApiResponse = await response.json();
-//     return data.hits;
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const { status } = getState().gallery;
-
-//       if (status === 'loading') {
-//         return false;
-//       }
-//     }
-//   }
-// );

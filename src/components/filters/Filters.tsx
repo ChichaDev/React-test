@@ -12,13 +12,15 @@ import { CustomBtn } from '../ui/CustomBtn';
 import { filterGridContainer } from './filterStyles';
 
 export const Filters = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+
   const dispatch = useAppDispatch();
 
   const categories = ['all', 'photo', 'illustration', 'vector'];
+
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
-  const [activeCategory, setActiveCategory] = useState('all');
 
   const handleImageCategory = (image_type: string) => {
     dispatch(setCategory(image_type));
