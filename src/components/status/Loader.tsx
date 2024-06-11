@@ -3,7 +3,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const boxStyles = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  marginTop: '20px'
 };
 
 export const Loader = () => {

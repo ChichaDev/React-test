@@ -13,6 +13,10 @@ type FetchGalleryItemsOptions = {
   perPage: number;
   imageType?: string;
 };
+
+const apiUrl = import.meta.env.VITE_API_URL;
+const apiKey = import.meta.env.VITE_API_KEY;
+
 export const fetchGalleryItems = createAsyncThunk<
   Gallery[],
   FetchGalleryItemsOptions,
@@ -20,7 +24,7 @@ export const fetchGalleryItems = createAsyncThunk<
 >(
   'gallery/fetchGalleryItems',
   async ({ page = 1, perPage = 10, imageType = 'all' }) => {
-    let url = `https://pixabay.com/api/?key=44311923-5b47cad41e8ce70a1755fc6bf&page=${page}&per_page=${perPage}`;
+    let url = `${apiUrl}?key=${apiKey}&page=${page}&per_page=${perPage}`;
     if (imageType) {
       url += `&image_type=${imageType}`;
     }

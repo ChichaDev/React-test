@@ -3,12 +3,10 @@ export const galleryGridContainer = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '1rem',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'flex-start'
 };
-export const btn = {
-  mt: '1rem',
-  display: { xs: 'flex', md: 'flex' }
-};
+
 export const galleryGridItem = {
   display: 'flex',
   justifyContent: 'center',

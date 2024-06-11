@@ -10,7 +10,7 @@ export const Error = () => {
       <Typography variant='body1' noWrap sx={errorTypography}>
         Error 404
       </Typography>
-      <Link style={errorLink} to='/main'>
+      <Link style={errorLink} to='/'>
         <Button variant='outlined' size='medium'>
           Back to Home
         </Button>

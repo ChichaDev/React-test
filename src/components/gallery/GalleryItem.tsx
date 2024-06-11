@@ -5,10 +5,10 @@ import type { Gallery } from '@/types';
 
 import { galleryGridCard, galleryGridItem } from './galleryStyles';
 
-type GalleryItemProps = Pick<Gallery, 'largeImageURL' | 'tags' | 'id'>;
+type GalleryItemProps = Pick<Gallery, 'webformatURL' | 'tags'>;
 
 export const GalleryItem = (props: GalleryItemProps) => {
-  const { largeImageURL, tags } = props;
+  const { webformatURL, tags } = props;
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -23,7 +23,7 @@ export const GalleryItem = (props: GalleryItemProps) => {
             component='img'
             height='350'
             width='350'
-            image={largeImageURL}
+            image={webformatURL}
             alt={tags}
             onLoad={() => setLoaded(true)}
             style={{ display: loaded ? 'block' : 'none' }}

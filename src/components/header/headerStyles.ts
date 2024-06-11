@@ -15,12 +15,3 @@ export const informLogo = {
   color: 'inherit',
   textDecoration: 'none'
 };
-
-export const i18nBox = {
-  marginRight: '2.5rem',
-  display: { xs: 'flex', md: 'flex' },
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  height: '40px',
-  width: '150px'
-};
