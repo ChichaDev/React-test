@@ -1,3 +1,9 @@
+export type RootObject = {
+  total: number;
+  totalHits: number;
+  hits: Gallery[];
+};
+
 export type Gallery = {
   id: number;
   pageURL: string;
