@@ -4,7 +4,7 @@ import { getGallery } from '@/store/gallery/selector';
 import { getStatusGallery } from '@/store/gallery/selector';
 import { useAppSelector } from '@/store/redux-hook';
 
-import { Loader } from '../status/Loader';
+import { Loader } from '../ui/status/Loader';
 
 import { GalleryItem } from './GalleryItem';
 import { galleryGridContainer } from './galleryStyles';

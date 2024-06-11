@@ -24,10 +24,14 @@ export const fetchGalleryItems = createAsyncThunk<
 >(
   'gallery/fetchGalleryItems',
   async ({ page = 1, perPage = 10, imageType = 'all' }) => {
-    let url = `${apiUrl}?key=${apiKey}&page=${page}&per_page=${perPage}`;
-    if (imageType) {
-      url += `&image_type=${imageType}`;
-    }
+    const params = {
+      key: apiKey,
+      page: String(page),
+      per_page: String(perPage),
+      image_type: imageType
+    };
+
+    const url = `${apiUrl}?${new URLSearchParams(params)}`;
 
     const response = await fetch(url);
     const data: ApiResponse = await response.json();
