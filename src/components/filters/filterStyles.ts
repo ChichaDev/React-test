@@ -7,7 +7,16 @@ export const filterGridContainer = {
 };
 
 export const buttonGroupContainer = {
-  gap: '20px',
+  gap: {
+    xs: '0px',
+    sm: '0px',
+    md: '20px'
+  },
   paddingLeft: '16px',
-  paddingRight: '16px'
+  paddingRight: '16px',
+  flexDirection: {
+    xs: 'column',
+    sm: 'column',
+    md: 'row'
+  }
 };
